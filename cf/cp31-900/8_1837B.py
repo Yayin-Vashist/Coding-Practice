@@ -28,15 +28,21 @@ while t:
 
     n = inp()
     st = insr()
-    s, f, c = 0, 0, 0
+    s, f, c, prev = 0, 0, 0, "."
 
-    for i in st:
-        if i == "<":
+    for i in range(n):
+        if st[i] == "<":
+            if prev == ">":
+                c = s
             c += 1
             if c > f:
                 f = c
+            prev = "<"
         else:
+            if prev == "<":
+                c = f
             c -= 1
             if c < s:
                 s = c
+            prev = ">"
     print(f - s + 1)
